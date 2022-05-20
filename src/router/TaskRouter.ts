@@ -5,10 +5,10 @@ const router = express();
 
 router.get('/',  TasksController.getAll);
 
-router.post('/');
+router.post('/', TasksController.create);
 
-router.delete('/:id',);
+router.delete('/:id', TasksController.delete);
 
-router.patch('/:id',)
+router.patch('/:id', TasksController.update)
 
 export default router;

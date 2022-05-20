@@ -9,10 +9,12 @@ const PORT = process.env.PORT;
 const app: Application = express();
 
 app.use(express.json());
+
 //cors is beeing used for testing in the same machine as the frontend server.
 app.use(cors({
   origin: '*',
 }))
+
 app.use('/tasks', TaskRouter);
 
 app.listen(PORT, () => {

@@ -16,7 +16,7 @@ export default class TasksController {
   public static async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
     await db.Tasks.destroy({ where: { id } })
-    return res.status(200).end();
+    return res.status(200).json({ message: `Task with id:${id} deleted` });
   }
 
   public static async update(req: Request, res: Response): Promise<Response> {
@@ -26,9 +26,9 @@ export default class TasksController {
     const statusArray = [ 'Pendente', 'Em andamento', 'Pronto' ];
     if (statusArray.find((s) => s === status)) {
       await db.Tasks.update({ task, status }, { where: { id } });
-      return res.status(200).end();
-    };
-    
-    return res.status(400).json({ message: 'Status inválido' });
+      return res.status(200).json({ message: `Task with id:${id} updated` });
+    } else {
+      return res.status(4001).json({ message: 'Invalid Status'});
+    }
   }
 }
